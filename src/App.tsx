@@ -1,4 +1,5 @@
 import "./App.css";
+import Dropdown from "./components/common/Dropdown";
 import MainLayout from "./components/common/MainLayout";
 import Pannel, {
   PannelBody,
@@ -25,7 +26,20 @@ function App() {
           <TabPanel index={0}>
             <PannelCap>cap</PannelCap>
             <Pannel>
-              <PannelHeader>header</PannelHeader>
+              <PannelHeader>
+                <>
+                  header
+                  <Dropdown
+                    options={[
+                      { label: <div>1</div>, value: `1` },
+                      { label: <div>2</div>, value: `2` },
+                      { label: <div>3</div>, value: `3` },
+                      { label: <div>4</div>, value: `4` },
+                    ]}
+                    onChange={(value) => console.log(value)}
+                  />
+                </>
+              </PannelHeader>
               <PannelBody>body</PannelBody>
               <PannelFooter>footer</PannelFooter>
             </Pannel>
