@@ -1,5 +1,11 @@
 import "./App.css";
 import MainLayout from "./components/common/MainLayout";
+import Pannel, {
+  PannelBody,
+  PannelCap,
+  PannelFooter,
+  PannelHeader,
+} from "./components/common/Pannel";
 import Tabs, {
   Tab,
   TabList,
@@ -16,7 +22,14 @@ function App() {
           <Tab index={1}>tab2</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel index={0}>panel1</TabPanel>
+          <TabPanel index={0}>
+            <PannelCap>cap</PannelCap>
+            <Pannel>
+              <PannelHeader>header</PannelHeader>
+              <PannelBody>body</PannelBody>
+              <PannelFooter>footer</PannelFooter>
+            </Pannel>
+          </TabPanel>
           <TabPanel index={1}>panel2</TabPanel>
         </TabPanels>
       </Tabs>
