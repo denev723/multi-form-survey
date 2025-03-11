@@ -10,16 +10,21 @@ import DropdownIcon from "../../assets/icons/arrow_circle_down.svg?react";
 import DateIcon from "../../assets/icons/calendar_today.svg?react";
 import TimeIcon from "../../assets/icons/schedule.svg?react";
 import QuestionBodyEditor from "./QuestionBodyEditor";
-import { useState } from "react";
+import Question from "../../models/question";
+import { observer } from "mobx-react-lite";
 
-export default function QuestionEditor() {
-  const [type, setType] = useState<QuestionType>("shortText");
+interface Props {
+  question: Question;
+}
+
+const QuestionEditor = observer(function QuestionEditor({ question }: Props) {
   return (
     <Pannel>
       <PannelHeader className="flex">
         <Input className="flex-1 mr-30" />
         <Dropdown<QuestionType>
-          onChange={(value) => setType(value)}
+          defaultValue={question.type}
+          onChange={(value) => question.setType(value)}
           options={[
             {
               label: (
@@ -88,8 +93,10 @@ export default function QuestionEditor() {
         />
       </PannelHeader>
       <PannelBody>
-        <QuestionBodyEditor type={type} />
+        <QuestionBodyEditor type={question.type} />
       </PannelBody>
     </Pannel>
   );
-}
+});
+
+export default QuestionEditor;
