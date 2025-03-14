@@ -22,7 +22,7 @@ export function PannelBody({ className, children }: PropsWithChildren<Cn>) {
 export function PannelFooter({ className, children }: PropsWithChildren<Cn>) {
   return (
     <>
-      <hr className="border-gray-100 mb-20" />
+      <hr className="border-gray-100" />
       <div className={className}>{children}</div>
     </>
   );
