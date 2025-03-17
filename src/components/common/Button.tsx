@@ -2,6 +2,7 @@ import cn from "classnames";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "tertiary";
+  type?: "button" | "submit" | "reset";
 }
 
 export default function Button({
