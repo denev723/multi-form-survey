@@ -8,7 +8,7 @@ export default function AdminPage() {
     <div className="flex flex-col">
       <div className="flex justify-center gap-x-20">
         <Tab path={`/surveys/${params.surveyId}/edit`}>질문</Tab>
-        <Tab path={`/surveys/${params.surveyId}/response`}>응답</Tab>
+        <Tab path={`/surveys/${params.surveyId}/res`}>응답</Tab>
       </div>
       <div className="flex-1">
         <Outlet />
