@@ -2,23 +2,38 @@ import { useRef, useState } from "react";
 import { useSurveyStore } from "../../store";
 import SectionView from "./SectionView";
 import { observer } from "mobx-react-lite";
+import { QuestionData, SectionData } from "../../types/app";
+import callApi from "../../utils/api";
+import { useNavigate, useParams } from "react-router";
 
 const SectionListView = observer(function SectionListView() {
   const surveyStore = useSurveyStore();
   const [currentSection, setCurrentSection] = useState(0);
   const last = currentSection === surveyStore.sections.length - 1;
 
-  const data = useRef<object[]>([]);
-  const handleNext = () => {
+  const data = useRef<
+    Record<SectionData["id"], Record<QuestionData["id"], string | string[]>>
+  >({});
+  const { surveyId } = useParams<{ surveyId: string }>();
+  const navigate = useNavigate();
+  const handleNext = async () => {
     if (last) {
-      //submit
-      console.log(data.current);
+      await callApi(`/surveys/${surveyId}/responses`, {
+        method: "POST",
+        body: data.current,
+      });
+      navigate(
+        `/surveys/${surveyId}/complete?title=${surveyStore.sections[0].title}`
+      );
+
       return;
     }
     setCurrentSection(currentSection + 1);
   };
-  const saveData = (sectionData: object) => {
-    data.current[currentSection] = sectionData;
+  const saveData = (
+    sectionData: Record<QuestionData["id"], string | string[]>
+  ) => {
+    data.current[surveyStore.sections[currentSection].id] = sectionData;
   };
 
   return (

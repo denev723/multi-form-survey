@@ -3,17 +3,20 @@ import Section from "../../models/section";
 import SectionTitleView from "./SectionTitleView";
 import QuestionView from "./QuestionView";
 import Button from "../common/Button";
+import { QuestionData } from "../../types/app";
 
 interface Props {
   section: Section;
   last: boolean;
-  onSave: (data: object) => void;
+  onSave: (data: Record<QuestionData["id"], string | string[]>) => void;
   onNext: () => void;
 }
 
 export default function SectionView({ section, last, onSave, onNext }: Props) {
   const method = useForm();
-  const handleSubmitData = (data: object) => {
+  const handleSubmitData = (
+    data: Record<QuestionData["id"], string | string[]>
+  ) => {
     onSave(data);
     onNext();
   };

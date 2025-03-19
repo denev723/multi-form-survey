@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import FormPage from "./pages/FormPage";
+import CompletePage from "./pages/CompletePage";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
               <Route path="edit" element={<EditPage />} />
               <Route path="response" element={<div>response</div>} />
             </Route>
+            <Route
+              path="/surveys/:surveyId/complete"
+              element={<CompletePage />}
+            />
           </Routes>
         </SurveyStoreProvider>
       </MainLayout>
